@@ -29,8 +29,12 @@
     // ❗ Notes
     // 🧠 Try using destructuring to grab a reference to the first element of the array
     // 🧠 Try using the at method of arrays to grab the last element
-    const swapper = () => {
-
+    const swapper = (arr) => {
+      let [first] = arr
+      let last = arr.at(arr.length - 1)
+      arr[0] = last
+      arr[arr.length - 1] = first
+      return arr.length >= 2?  arr: "No swap performed"
     }
 
     // 👉 CHALLENGE 2
@@ -46,7 +50,9 @@
     // 🧠 Try using the ternary operator instead of a conditional statement when deciding what to return.
     // 🧠 So instead of doing `if ('foo') return 'bar' else return 'baz'` do `return 'foo' ? 'bar' : 'baz'`
     // 🧠 The above recommendations allow to write the whole function body in just two clean lines!
-    const headAndTail = () => {
+    const headAndTail = (arr) => {
+      let [head ,...tail] = arr
+      return arr.length > 0 ?  [head, tail] : "This array is empty"
 
     }
 
@@ -59,7 +65,11 @@
     // devGreet(false, false) // should return "Hey, I am a backend dev and I am sad"
     // ❗ Notes
     // 🧠 Use ternary expressions to construct the string.
-    const devGreet = () => {
+    const devGreet = (isFrontend, isHappy) => {
+      return isFrontend && isHappy? "Hey, I am a frontend dev and I am happy": "Hey, I am a frontend dev and I am sad" &&
+            !isFrontend && !isHappy? "Hey, I am a backend dev and I am sad" :  "Hey, I am a backend dev and I am happy" &&
+            isFrontend && !isHappy? "Hey, I am a frontend dev and I am sad": "Hey, I am a frontend dev and I am happy" && 
+            !isFrontend && isHappy? "Hey, I am a backend dev and I am happy": "Hey, I am a backend dev and I am sad"
 
     }
 
@@ -72,8 +82,9 @@
     // recognize({}) // should return "Hidden Person Rocks!"
     // ❗ Notes
     // 🧠 Try using destructuring to grab the name, and a return followed by a ternary expression.
-    const recognize = () => {
-
+    const recognize = (user) => {
+      let {name} = user
+      return user.name? `${name} Rules!`:  "Hidden Person Rocks!"
     }
 
     // 👉 CHALLENGE 5
@@ -83,8 +94,8 @@
     // processBooleans([1, 0, 0, 1, 0]) // should return ["Y", "N", "N", "Y", "N"]
     // ❗ Notes
     // 🧠 Using map, arrow function syntax, and the ternary, you can make this function a short one-liner
-    const processBooleans = () => {
-
+    const processBooleans = (boolArr) => {
+      return boolArr.map(bool => bool == 1? "Y": "N")
     }
 
     // 👉 CHALLENGE 6
@@ -97,8 +108,14 @@
     // 🧠 Split the string but do not use the reverse method of arrays. Let's do it manually.
     // 🧠 We suggest using a for loop. Research how to loop backwards over an array, starting at the last element.
     // 🧠 Use a ternary in the return statement.
-    const reverseString = () => {
-
+    const reverseString = (string) => {
+      let counter = 0
+     let stringArr = string.split()
+      for(i = string.length; i >=0; i--){
+        stringArr[counter] = string[i]
+        counter++
+      }
+      return stringArr.join("") === string?"It's a palindrome!":stringArr.join("")
     }
 
     // 👉 CHALLENGE 7
@@ -113,8 +130,18 @@
     // ❗ Notes
     // 🧠 Even though object properties have no particular order, to avoid confusing
     // the test runner, please set in each object first name, then age, and finally jsLover.
-    const zip = () => {
-
+    const zip = (name, born, jsLover) => {
+      let result = []
+        name.forEach((name , idx) => {
+           person = {
+            name : name,
+            born : born[idx],
+            jsLover : jsLover[idx],
+          }
+          result.push(person)
+        })
+      return result
+       
     }
 
     // 🧪 TESTS, do not work below this line
